@@ -39,7 +39,7 @@ first_five_pows_two = { 2**x for x in {0,1,2,3,4} }
 
 
 ## 7: (Task 7) Double comprehension evaluating to nine-element set
-X1 = { 2 3, 4 }
+X1 = { 9, 10, 11 }
 Y1 = { 6, 7, 8 }
 
 
@@ -91,14 +91,14 @@ zero_sum_list = [ (i,j,k) for i in S for j in S for k in S if i+j+k == 0 ]
 ## 14: (Task 14) Nontrivial three-element tuples summing to zero
 S = {-4, -2, 1, 2, 5, 0}
 # Replace [ ... ] with a one-line list comprehension in which S appears
-exclude_zero_list = [ (i,j,k) for i in S for j in S for k in S if i+j+k == 0 and (i!=0 or j !=0 or k1=0) ] 
+exclude_zero_list = [ (i,j,k) for i in S for j in S for k in S if i+j+k == 0 and (i!=0 or j !=0 or k!=0) ] 
 
 
 
 ## 15: (Task 15) One nontrivial three-element tuple summing to zero
 S = {-4, -2, 1, 2, 5, 0}
 # Replace ... with a one-line expression that uses a list comprehension in which S appears
-first_of_tuples_list = [ (i,j,k) for i in S for j in S for k in S if i+j+k == 0 and (i!=0 or j !=0 or k1=0) ][0]
+first_of_tuples_list = [ (i,j,k) for i in S for j in S for k in S if i+j+k == 0 and (i!=0 or j !=0 or k!=0) ][0]
 
 
 
@@ -110,7 +110,7 @@ example_L = [0,0,1]
 
 ## 17: (Task 17) Odd numbers
 # Replace {...} with a one-line set comprehension over a range of the form range(n)
-odd_num_list_range = { i for i in range(100) if(i%2 == 0)}
+odd_num_list_range = { i for i in range(100) if(i%2 == 1)}
 
 
 
@@ -119,7 +119,7 @@ odd_num_list_range = { i for i in range(100) if(i%2 == 0)}
 # Instead, it should use zip and range.
 # Note: zip() does not return a list. It returns an 'iterator of tuples'
 L = ['A','B','C','D','E']
-range_and_zip = zip( range(0,5), L )
+range_and_zip = list(zip( range(0,5), L ))
 
 
 
@@ -153,7 +153,7 @@ value_list_modified_2 = [ dict.get(k, "NOT PRESENT") for dict in dlist ] # <-- a
 
 ## 22: (Task 22) A dictionary mapping integers to their squares
 # Replace {...} with a one-line dictionary comprehension
-square_dict = { x:x*x for x in range(0,99) }
+square_dict = { x:x**2 for x in range(0,100) }
 
 
 
@@ -170,28 +170,24 @@ digits = set(range(base))
 # Replace { ... } with a one-line dictionary comprehension
 # Your comprehension should use the variables 'base' and 'digits' so it will work correctly if these
 # are assigned different values (e.g. base = 2 and digits = {0,1})
-representation_dict =  { key:((key-key%100)/100,(key-(key%10))%100/10,key%10) for key in range(0,((base-1)*base**0 + (base-1)*base**1 + (base-1)*base**2)+1) }
-
-
+representation_dict =  { key:((key-key%base**2)/base**2,(key-(key%base))%base**2/base,key%base) for key in range(0,((base-1)*base**0 + (base-1)*base**1 + (base-1)*base**2)+1) }
 
 
 ## 25: (Task 25) A dictionary mapping names to salaries
 id2salary = {0:1000.0, 1:1200.50, 2:990}
 names = ['Larry', 'Curly', 'Moe']
 # Replace { ... } with a one-line dictionary comprehension that uses id2salary and names.
-listdict2dict = { ... }
-
+listdict2dict = { names[index] : id2salary.get(index, "") for index in range(0,len(names)) }
 
 
 ## 26: (Task 26) Procedure nextInts
 # Complete the procedure definition by replacing [ ... ] with a one-line list comprehension
-def nextInts(L): return [ ... ]
-
+def nextInts(L): return [1+x for x in L]
 
 
 ## 27: (Task 27) Procedure cubes
 # Complete the procedure definition by replacing [ ... ] with a one-line list comprehension
-def cubes(L): return [ ... ] 
+def cubes(L): return [x**3 for x in L] 
 
 
 
@@ -200,8 +196,7 @@ def cubes(L): return [ ... ]
 # Output: the list L such that L[i] is the value associated in dct with keylist[i]
 # Example: dict2list({'a':'A', 'b':'B', 'c':'C'},['b','c','a']) should equal ['B','C','A']
 # Complete the procedure definition by replacing [ ... ] with a one-line list comprehension
-def dict2list(dct, keylist): return [ ... ]
-
+def dict2list(dct, keyList): return [ dct.get(x) for x in keyList ]
 
 
 ## 29: (Task 29) Procedure list2dict
@@ -209,5 +204,4 @@ def dict2list(dct, keylist): return [ ... ]
 # Output: the dictionary that maps keylist[i] to L[i] for i=0,1,...len(L)-1
 # Example: list2dict(['A','B','C'],['a','b','c']) should equal {'a':'A', 'b':'B', 'c':'C'}
 # Complete the procedure definition by replacing { ... } with a one-line dictionary comprehension
-def list2dict(L, keylist): return { ... }
-
+def list2dict(L, keylist): return{ keylist[index]:L[index] for index in range(0,len(L))}
