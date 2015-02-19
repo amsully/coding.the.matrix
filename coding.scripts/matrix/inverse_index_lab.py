@@ -56,9 +56,12 @@ def orSearch(inverseIndex, query):
     >>> orSearch(idx, ['Johann', 'Carl'])
     {0, 2, 3, 4, 5}
     """
-    pass
+    the_set = set()
+    for word in query:
+        if( word in inverseIndex ):
+            the_set.update( inverseIndex[word] )
 
-
+    return the_set
 
 ## 4: (Task 4) And Search
 def andSearch(inverseIndex, query):
@@ -73,5 +76,11 @@ def andSearch(inverseIndex, query):
     >>> andSearch(idx, ['Johann', 'Bach'])
     {0, 4}
     """
-    pass
-
+    orInfo = orSearch( inverseIndex, query )
+    newInfo = set()
+    newInfo.update(orInfo)
+    for index in orInfo:
+        for word in query:
+            if index not in inverseIndex[word]:
+                newInfo.difference_update( {index} )
+    return newInfo
