@@ -239,7 +239,7 @@ def submit(parts_string):
         login = 'sullivan1513@gmail.com' # login_prompt()
     global password
     if not password:
-        password = 'vQ9yfVJ23X' #password_prompt()
+        password = password_prompt()
     if not parts_string: 
         parts_string = parts_prompt(problems)
 
