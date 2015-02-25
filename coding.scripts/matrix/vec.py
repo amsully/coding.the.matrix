@@ -189,7 +189,7 @@ def neg(v):
 
     """
     negVec = {}
-    for key in v:
+    for key in v.f:
         negVec.update({key: -(v[key]) })
     return Vec(v.D, negVec)
 
