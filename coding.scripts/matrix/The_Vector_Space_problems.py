@@ -3,8 +3,9 @@ coursera = 1
 # Please fill out this stencil and submit using the provided submission script.
 
 from vec import Vec
-
-
+from vec import scalar_mul
+from GF2 import one
+import itertools
 
 ## 1: (Problem 3.8.1) Vector Comprehension and Sum
 def vec_select(veclist, k):
@@ -77,9 +78,50 @@ def GF2_span(D, S):
     >>> S == {Vec({0, 1},{1: one}), Vec({0, 1},{0: one})}
     True
     '''
-    pass
 
 
+    # theSet = {}
+    # if not S:
+    #     return S
+    # for vec in S:
+    #     theSet.update(vec + vec_sum( [newV for newV in GF2_span(D, S.remove(vec) )],D ))
+    #     theSet.update( vec_sum( [zeroV for zeroV in GF2_span(D, S.remove(vec)) ],D) )
+    # return theSet
+
+    # if not D:
+    #     return S
+    # for d in D:
+    #     S.update( Vec(D, {d:one}) + vec_sum( [vec for vec in S], D ) )
+    #     S.update( GF2_span(D.remove(d), S) )
+    # return S
+
+    vec_list = [vec for vec in S]
+    combos = [[i for i in x] for x in itertools.product(range(2), repeat=len(S))]
+    sum_set = set()
+    result_set = set()
+    for binary in combos:
+        for index in range(len(binary)):
+            piece = binary[index] * vec_list[index]
+            sum_set.add( piece )
+        the_sum = vec_sum([vec for vec in sum_set],D)
+        result_set.update( sum_set )
+        sum_set = {}
+    return result_set
+
+D = {0,1}
+S={Vec({0,1},{0:one}), Vec({0,1},{1:one})}
+# print(GF2_span({0,1}, S))
+vec_list = [vec for vec in S]
+combos = [[i for i in x] for x in itertools.product(range(2), repeat=len(S))]
+sum_set = set()
+result_set = set()
+for binary in combos:
+    for index in range(len(binary)):
+        piece = (binary[index] * vec_list[index])
+        sum_set.add(piece)
+    print(vec_sum([vec for vec in sum_set],D))
+    #result_set.update( the_sum )
+print(result_set)
 
 ## 4: (Problem 3.8.7) Is it a vector space 1
 # Answer with a boolean, please.
