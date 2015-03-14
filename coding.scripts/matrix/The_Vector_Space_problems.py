@@ -125,24 +125,24 @@ print(result_set)
 
 ## 4: (Problem 3.8.7) Is it a vector space 1
 # Answer with a boolean, please.
-is_a_vector_space_1 = ...
+is_a_vector_space_1 = False
 
 
 
 ## 5: (Problem 3.8.8) Is it a vector space 2
 # Answer with a boolean, please.
-is_a_vector_space_2 = ...
+is_a_vector_space_2 = True
 
 
 
 ## 6: (Problem 3.8.9) Is it a vector space 3
 # Answer with a boolean, please.
-is_a_vector_space_3 = ...
+is_a_vector_space_3 = False
 
 
 
 ## 7: (Problem 3.8.10) Is it a vector space 4
 # Answer with a boolean, please.
-is_a_vector_space_4a = ...
-is_a_vector_space_4b = ...
+is_a_vector_space_4a = True
+is_a_vector_space_4b = False
 
